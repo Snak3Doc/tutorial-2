@@ -1,4 +1,14 @@
 ---
+const pageTitle = "About Me";
+
+const identity = {
+    firstName: "SnakeDoc",
+    country: "Australia",
+    occupation: "Programming Instructor",
+    hobbies: ["programming", "gaming", "mountain biking", "hiking"]
+};
+
+const skills = ["Python", "C#", "HTML", "CSS", "Javascript", "Unity", "Pygame", "PyQt", "Web Dev"];
 
 ---
 
@@ -8,16 +18,30 @@
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="viewport" content="width=device-width" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
+		<title>{pageTitle}</title>
 	</head>
 	<body>
 		<a href="/">Home</a>
         <a href="/blog">Blog</a>
         <a href="/about">About</a>
 
-		<h1>About Me</h1>
+		<h1>{pageTitle}</h1>
         <h2>... and my new Astro site</h2>
         <p>Im learning to use Astro to create my first blog.</p>
         <p>This site will be updated as i work through the introduction tutorial</p>
+
+        <p>Here are some facts about me:</p>
+        <ul>
+            <li>My name is {identity.firstName}.</li>
+            <li>I live in {identity.country} and i work as a {identity.occupation}.</li>
+            {identity.hobbies.length >= 2 &&
+                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}.</li>
+            }
+        </ul>
+        <p>My skills are:</p>
+        <ul>
+            {skills.map((skill) => <li>{skill}</li>)}
+        </ul>
+
 	</body>
 </html>
