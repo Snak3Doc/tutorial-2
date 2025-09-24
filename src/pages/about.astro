@@ -1,69 +1,66 @@
 ---
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 const pageTitle = "About Me";
 
 const identity = {
-    firstName: "SnakeDoc",
-    country: "Australia",
-    occupation: "Programming Instructor",
-    hobbies: ["programming", "gaming", "mountain biking", "hiking"]
+  firstName: "SnakeDoc",
+  country: "Australia",
+  occupation: "Programming Instructor",
+  hobbies: ["programming", "gaming", "mountain biking", "hiking"]
 };
 
-const skills = ["Python", "C#", "HTML", "CSS", "Javascript", "Unity", "Pygame", "PyQt", "Web Dev"];
+const skills = [
+  "Python", "C#", "HTML", "CSS", "Javascript",
+  "Unity", "Pygame", "PyQt", "Web Dev"
+];
 
 const happy = true;
 const finished = true;
 const goal = 8;
 
-const skillColor = "navy"
-
+const skillColor = "navy";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-        <style define:vars={{skillColor}}>
-            h1 {
-                color: purple;
-                font-size: 4rem;
-            }
-            .skill {
-                color: var(--skillColor);
-                font-weight: bold;
-            }
-        </style>
-	</head>
-	<body>
-		<Header/>
+<BaseLayout pageTitle={pageTitle}>
+  <h2>... and my new Astro site</h2>
+  <p>Im learning to use Astro to create my first blog.</p>
+  <p>This site will be updated as i work through the introduction tutorial</p>
 
-		<h1>{pageTitle}</h1>
-        <h2>... and my new Astro site</h2>
-        <p>Im learning to use Astro to create my first blog.</p>
-        <p>This site will be updated as i work through the introduction tutorial</p>
+  {happy && <p>I am happy to be learning Astro.</p>}
+  {finished && <p>I finished the tutorial</p>}
+  {goal === 8
+    ? <p>My goal is to finish the tutorial in 8 lessons</p>
+    : <p>My goal is not 8 lessons</p>
+  }
 
-        {happy && <p>I am  happy to be learning Astro.</p>}
-        {finished && <p>I finished the tutorial</p>}
-        {goal === 8 ? <p>My goal is to finish the tutorial in 8 lessons</p> : <p>My goal is not 8 lessons</p>}
+  <p>Here are some facts about me:</p>
+  <ul>
+    <li>My name is {identity.firstName}.</li>
+    <li>I live in {identity.country} and I work as a {identity.occupation}.</li>
+    {identity.hobbies.length >= 2 &&
+      <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}.</li>
+    }
+  </ul>
 
-        <p>Here are some facts about me:</p>
-        <ul>
-            <li>My name is {identity.firstName}.</li>
-            <li>I live in {identity.country} and i work as a {identity.occupation}.</li>
-            {identity.hobbies.length >= 2 &&
-                <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}.</li>
-            }
-        </ul>
-        <p>My skills are:</p>
-        <ul>
-            {skills.map((skill) => <li class="skill">{skill}</li>)}
-        </ul>
-        <Footer />
-	</body>
-</html>
+  <p>My skills are:</p>
+  <ul>
+    {skills.map((skill) => <li class="skill">{skill}</li>)}
+  </ul>
+
+  <!-- Page-specific styles -->
+  <style define:vars={{ skillColor }}>
+    .skill {
+      color: var(--skillColor);
+      font-weight: bold;
+    }
+  </style>
+
+  <!-- Styles that must affect layout elements (like h1) -->
+  <style is:global>
+    h1 {
+      color: purple;
+      font-size: 4rem;
+    }
+  </style>
+</BaseLayout>

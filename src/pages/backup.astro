@@ -1,0 +1,45 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const pageTitle = "About Me";
+
+const identity = {
+    firstName: "SnakeDoc",
+    country: "Australia",
+    occupation: "Programming Instructor",
+    hobbies: ["programming", "gaming", "mountain biking", "hiking"]
+};
+
+const skills = ["Python", "C#", "HTML", "CSS", "Javascript", "Unity", "Pygame", "PyQt", "Web Dev"];
+
+const happy = true;
+const finished = true;
+const goal = 8;
+
+const skillColor = "navy"
+
+---
+
+<BaseLayout>
+    <h1>{pageTitle}</h1>
+    <h2>... and my new Astro site</h2>
+    <p>Im learning to use Astro to create my first blog.</p>
+    <p>This site will be updated as i work through the introduction tutorial</p>
+
+    {happy && <p>I am  happy to be learning Astro.</p>}
+    {finished && <p>I finished the tutorial</p>}
+    {goal === 8 ? <p>My goal is to finish the tutorial in 8 lessons</p> : <p>My goal is not 8 lessons</p>}
+
+    <p>Here are some facts about me:</p>
+    <ul>
+        <li>My name is {identity.firstName}.</li>
+        <li>I live in {identity.country} and i work as a {identity.occupation}.</li>
+        {identity.hobbies.length >= 2 &&
+            <li>Two of my hobbies are: {identity.hobbies[0]} and {identity.hobbies[1]}.</li>
+        }
+    </ul>
+    <p>My skills are:</p>
+    <ul>
+        {skills.map((skill) => <li class="skill">{skill}</li>)}
+    </ul>
+</BaseLayout>
