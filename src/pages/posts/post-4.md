@@ -7,7 +7,7 @@ author: "SnakeDoc"
 image:
     url: "https://docs.astro.build/assets/rays.webp"
     alt: "The Astro logo on a dark background with rainbow rays."
-tags: ["astro", "blogging", "learning astro"]
+tags: ["astro", "blogging", "learning astro", "problem solving"]
 ---
 
 ## The Problem
